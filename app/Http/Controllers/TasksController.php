@@ -52,6 +52,7 @@ class TasksController extends Controller
         ]);
 
         $task = new Task;
+        $task->status = $request->status;
         $task->content = $request->content;
         $task->save();
 
@@ -103,9 +104,10 @@ class TasksController extends Controller
             'status' =>  'required|max:10',
         ]);
         
-        $Task = Task::find($id);
-        $Task->content = $request->content;
-        $Task->save();
+        $task = Task::find($id);
+        $task->status = $request->status;
+        $task->content = $request->content;
+        $task->save();
 
         return redirect('/');
     }
