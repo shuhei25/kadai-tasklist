@@ -77,14 +77,13 @@ class TasksController extends Controller
      */
     public function show($id)
     {
-       $micropost = \App\Task::find($id);
+       $task = Task::find($id);
 
         if (\Auth::user()->id === $task->user_id) {
-            return view ('tasks.show', [
-                'task'=$task,
-            ]);
+            return view('tasks.show', [
+                'task'=> $task,
+         ]);
         }
-        
         return redirect('/');
     }
     /**
@@ -133,12 +132,13 @@ class TasksController extends Controller
      */
     public function destroy($id)
     {
-    $micropost = \App\Task::find($id);
+    $task = \App\Task::find($id);
 
         if (\Auth::user()->id === $task->user_id) {
             $task->delete();
 
         return redirect('/');
+        }
     }
 
    
